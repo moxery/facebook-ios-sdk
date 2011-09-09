@@ -397,7 +397,9 @@ BOOL FBIsDeviceIPad() {
   NSURL* url = request.URL;
 
   if ([url.scheme isEqualToString:@"fbconnect"]) {
-    if ([[url.resourceSpecifier substringToIndex:8] isEqualToString:@"//cancel"]) {
+      BOOL cancel = [[url.resourceSpecifier substringToIndex:8] isEqualToString:@"//cancel"];
+      cancel = cancel || [[url description] hasSuffix:@"success#_=_"]; // detect FB's cancel because it never seems to send fbconnect://cancel
+    if ( cancel ) {
       NSString * errorCode = [self getStringFromUrl:[url absoluteString] needle:@"error_code="];
       NSString * errorStr = [self getStringFromUrl:[url absoluteString] needle:@"error_msg="];
       if (errorCode) {
