@@ -23,7 +23,7 @@
 #import "FBAppCall+Internal.h"
 #import "FBAppBridge.h"
 #import "FBAccessTokenData.h"
-#import "FBInsights+Internal.h"
+#import "FBAppEvents+Internal.h"
 #import "FBDialogsParams+Internal.h"
 #import "FBLoginDialogParams.h"
 #import "FBShareDialogParams.h"
@@ -42,7 +42,7 @@
         FBOSIntegratedShareDialogHandler fancy = ^(FBOSIntegratedShareDialogResult result, NSError *error) {
             handler(result, error);
         };
-        return fancy;
+        return [[fancy copy] autorelease];
     }
     return nil;
 }

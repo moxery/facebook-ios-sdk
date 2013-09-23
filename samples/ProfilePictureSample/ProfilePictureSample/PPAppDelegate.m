@@ -37,6 +37,7 @@
     } else {
         self.viewController = [[PPViewController alloc] initWithNibName:@"PPViewController_iPad" bundle:nil];
     }
+    self.viewController.wantsFullScreenLayout = YES;
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
