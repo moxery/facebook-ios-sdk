@@ -130,7 +130,6 @@
 		85954AD71558637800FABA9A /* FBGraphObjectTableSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B99CF41549E02A002AEA86 /* FBGraphObjectTableSelection.m */; };
 		85954B86155B452E00FABA9A /* FBGraphObjectPagingLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 85954B84155B452D00FABA9A /* FBGraphObjectPagingLoader.h */; };
 		85954B87155B452E00FABA9A /* FBGraphObjectPagingLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 85954B85155B452E00FABA9A /* FBGraphObjectPagingLoader.m */; };
-		85A44BA016A8CE05007BE80E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9CBC53115253F6D0036AA71 /* SenTestingKit.framework */; };
 		85A44BA116A8CE05007BE80E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8446FDB3151D2674000BE007 /* UIKit.framework */; };
 		85A44BA216A8CE05007BE80E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		85A44BA816A8CE05007BE80E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85A44BA616A8CE05007BE80E /* InfoPlist.strings */; };
@@ -357,7 +356,6 @@
 		B9C6E1351525219600E46808 /* FBCacheIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C6E1311525219600E46808 /* FBCacheIndex.m */; };
 		B9C6E1371525219600E46808 /* FBDataDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C6E1331525219600E46808 /* FBDataDiskCache.m */; };
 		B9CBC51E152537270036AA71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
-		B9CBC53215253F6D0036AA71 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9CBC53115253F6D0036AA71 /* SenTestingKit.framework */; };
 		B9CBC53515254AB00036AA71 /* FBCacheIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C6E1311525219600E46808 /* FBCacheIndex.m */; };
 		B9CBC53615254AB00036AA71 /* FBDataDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C6E1331525219600E46808 /* FBDataDiskCache.m */; };
 		B9CBC54315254CBD0036AA71 /* FBCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CBC54215254CBD0036AA71 /* FBCacheTests.m */; };
@@ -685,7 +683,7 @@
 		B9C6E1311525219600E46808 /* FBCacheIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBCacheIndex.m; sourceTree = "<group>"; };
 		B9C6E1331525219600E46808 /* FBDataDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBDataDiskCache.m; sourceTree = "<group>"; };
 		B9CBC519152537270036AA71 /* FacebookSDKTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FacebookSDKTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B9CBC53115253F6D0036AA71 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		B9CBC53715254AC50036AA71 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		B9CBC54115254CBD0036AA71 /* FBCacheTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBCacheTests.h; path = tests/FBCacheTests.h; sourceTree = "<group>"; };
 		B9CBC54215254CBD0036AA71 /* FBCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBCacheTests.m; path = tests/FBCacheTests.m; sourceTree = "<group>"; };
 		B9CBC54615254CCD0036AA71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = tests/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -723,7 +721,7 @@
 				9DCFB230177A0A5F0079E85B /* libOCMock.a in Frameworks */,
 				85A44C1A16A8D64F007BE80E /* CoreLocation.framework in Frameworks */,
 				85A44C1116A8D559007BE80E /* CoreGraphics.framework in Frameworks */,
-				85A44BA016A8CE05007BE80E /* SenTestingKit.framework in Frameworks */,
+				85A44C1016A8D556007BE80E /* Accounts.framework in Frameworks */,
 				85A44BA116A8CE05007BE80E /* UIKit.framework in Frameworks */,
 				85A44BA216A8CE05007BE80E /* Foundation.framework in Frameworks */,
 			);
@@ -737,7 +735,7 @@
 				85C60EF21698DA8400E7BB7D /* libOHHTTPStubs.a in Frameworks */,
 				84B5F11C1552FD3C00A55DDC /* CoreGraphics.framework in Frameworks */,
 				84B5F11A1552F82200A55DDC /* UIKit.framework in Frameworks */,
-				B9CBC53215253F6D0036AA71 /* SenTestingKit.framework in Frameworks */,
+				B9CBC53815254AC50036AA71 /* libsqlite3.dylib in Frameworks */,
 				B9CBC51E152537270036AA71 /* Foundation.framework in Frameworks */,
 				85C9D1BF16A79B5E00D0ED57 /* OCHamcrestIOS.framework in Frameworks */,
 				84FA4277153E1609009CEEF8 /* CoreLocation.framework in Frameworks */,
@@ -788,7 +786,11 @@
 			isa = PBXGroup;
 			children = (
 				85C9D1BD16A79B4900D0ED57 /* OCHamcrestIOS.framework */,
-				B9CBC53115253F6D0036AA71 /* SenTestingKit.framework */,
+				85A928981611272D008699F1 /* Social.framework */,
+				B9A4166916113DE3001E7A77 /* AdSupport.framework */,
+				845857A116096ED000CC89E5 /* Accounts.framework */,
+				85A928981611272D008699F1 /* Social.framework */,
+				B9CBC53715254AC50036AA71 /* libsqlite3.dylib */,
 				84B5F11B1552FD3C00A55DDC /* CoreGraphics.framework */,
 				B96F15E2152B927E00A52896 /* CoreLocation.framework */,
 				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
@@ -800,7 +802,6 @@
 		08FB77AEFE84172EC02AAC07 /* FacebookSDK */ = {
 			isa = PBXGroup;
 			children = (
-				9D366B2A178F230A007B4CEC /* FacebookSDKResources.bundle.README */,
 				B5B7702D16C30EAD00729340 /* Base64 */,
 				B51484E516C6223D0041257D /* Cryptography */,
 				84E0CA07153619D400778DA4 /* Facebook.h */,
