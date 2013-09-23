@@ -18,6 +18,7 @@
 #import "Facebook.h"
 #import "FBFrictionlessRequestSettings.h"
 #import "FBUtility.h"
+#import "FBDialogClosePNG.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global
@@ -336,7 +337,7 @@ params   = _params;
         _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self addSubview:_webView];
         
-        UIImage* closeImage = [UIImage imageNamed:@"FacebookSDKResources.bundle/FBDialog/images/close.png"];
+        UIImage* closeImage = [FBDialogClosePNG image];
         
         UIColor* color = [UIColor colorWithRed:167.0/255 green:184.0/255 blue:216.0/255 alpha:1];
         _closeButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
@@ -403,11 +404,14 @@ params   = _params;
 // Display the dialog's WebView with a slick pop-up animation	
 - (void)showWebView {	
     UIWindow* window = [UIApplication sharedApplication].keyWindow;	
-    if (!window) {	
-        window = [[UIApplication sharedApplication].windows objectAtIndex:0];	
-    }	
-    _modalBackgroundView.frame = window.frame;	
-    [_modalBackgroundView addSubview:self];	
+    if (window.windowLevel != UIWindowLevelNormal) {
+        for(window in [UIApplication sharedApplication].windows) {
+            if (window.windowLevel == UIWindowLevelNormal)
+                break;
+        }
+    }
+    _modalBackgroundView.frame = window.frame;
+    [_modalBackgroundView addSubview:self];
     [window addSubview:_modalBackgroundView];	
     
     self.transform = CGAffineTransformScale([self transformForOrientation], 0.001, 0.001);	
@@ -511,7 +515,7 @@ params   = _params;
 
 - (void)deviceOrientationDidChange:(void*)object {
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-    if (!_showingKeyboard && [self shouldRotateToOrientation:orientation]) {
+    if ([self shouldRotateToOrientation:orientation]) {
         [self updateWebOrientation];
         
         CGFloat duration = [UIApplication sharedApplication].statusBarOrientationAnimationDuration;
@@ -639,25 +643,39 @@ params   = _params;
 }
 
 - (void)dismissWithSuccess:(BOOL)success animated:(BOOL)animated {
-    if (success) {
-        if ([_delegate respondsToSelector:@selector(dialogDidComplete:)]) {
-            [_delegate dialogDidComplete:self];
-        }
-    } else {
-        if ([_delegate respondsToSelector:@selector(dialogDidNotComplete:)]) {
-            [_delegate dialogDidNotComplete:self];
-        }
-    }
+    // retain self for the life of this method, in case we are released by a client
+    id me = [self retain];
     
-    [self dismiss:animated];
+    @try {
+        if (success) {
+            if ([_delegate respondsToSelector:@selector(dialogDidComplete:)]) {
+                [_delegate dialogDidComplete:self];
+            }
+        } else {
+            if ([_delegate respondsToSelector:@selector(dialogDidNotComplete:)]) {
+                [_delegate dialogDidNotComplete:self];
+            }
+        }
+        
+        [self dismiss:animated];
+    } @finally {
+        [me release];
+    }
 }
 
 - (void)dismissWithError:(NSError*)error animated:(BOOL)animated {
-    if ([_delegate respondsToSelector:@selector(dialog:didFailWithError:)]) {
-        [_delegate dialog:self didFailWithError:error];
-    }
+    // retain self for the life of this method, in case we are released by a client
+    id me = [self retain];
     
-    [self dismiss:animated];
+    @try {
+        if ([_delegate respondsToSelector:@selector(dialog:didFailWithError:)]) {
+            [_delegate dialog:self didFailWithError:error];
+        }
+        
+        [self dismiss:animated];
+    } @finally {
+        [me release];
+    }
 }
 
 - (void)dialogWillAppear {
@@ -683,10 +701,17 @@ params   = _params;
 }
 
 - (void)dialogDidCancel:(NSURL *)url {
-    if ([_delegate respondsToSelector:@selector(dialogDidNotCompleteWithUrl:)]) {
-        [_delegate dialogDidNotCompleteWithUrl:url];
+    // retain self for the life of this method, in case we are released by a client
+    id me = [self retain];
+    
+    @try {
+        if ([_delegate respondsToSelector:@selector(dialogDidNotCompleteWithUrl:)]) {
+            [_delegate dialogDidNotCompleteWithUrl:url];
+        }
+        [self dismissWithSuccess:NO animated:YES];
+    } @finally {
+        [me release];
     }
-    [self dismissWithSuccess:NO animated:YES];
 }
 
 @end
