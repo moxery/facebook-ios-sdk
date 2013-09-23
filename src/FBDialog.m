@@ -440,7 +440,6 @@ params   = _params;
 // UIWebViewDelegate
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request
-<<<<<<< HEAD
     navigationType:(UIWebViewNavigationType)navigationType {
   NSURL* url = request.URL;
 
